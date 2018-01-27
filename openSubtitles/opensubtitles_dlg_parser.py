@@ -9,7 +9,7 @@ import time
 import numpy as np
 from utils.abbr2comp import Abbr2Comp
 from utils.cleanSentence import cleanSentence
-import utils.regularizer
+import utils.regexp
 
 replacer = Abbr2Comp()
 # random.seed(123)
@@ -36,7 +36,7 @@ def main():
             if len(context_response_pairs) < 6:
                 # clean data in this block.
                 text = cleanSentence(replacer.replace(subTitle))
-                text = utils.regularizer.delete_repeat_punctuation(text)
+                text = utils.regexp.delete_repeat_punctuation(text)
                 # text = utils.regularizer.split_word_punc(text)
                 context_response_pairs.append(text)
             if len(context_response_pairs) > 2 and random.random() > 0.5:
