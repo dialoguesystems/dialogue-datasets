@@ -7,9 +7,9 @@ import argparse
 
 parser = argparse.ArgumentParser(description='split-dataset')
 
-parser.add_argument('-ctx_path', type=str, default="opensub_long.ctx",
+parser.add_argument('-ctx_path', type=str, default="opensub.ctx",
                     help='Path to the context file from opensubtitles_dlg_parser.py')
-parser.add_argument('-rsp_path', type=str, default="opensub_long.rsp",
+parser.add_argument('-rsp_path', type=str, default="opensub.rsp",
                     help='Path to the response file from opensubtitles_dlg_parser.py')
 
 parser.add_argument('-output_dir', type=str, default="/home/zeng/myGithub/openDialog-mx/data/opensub",
@@ -40,17 +40,17 @@ test_response_writer = open(os.path.join(opt.output_dir, opt.test_response), "w"
 
 assert len(ctx_lines) == len(rsp_lines), "the length of contexts & responses are not equal!"
 indexes = np.arange(len(ctx_lines))
-np.random.seed(1234)
+np.random.seed(2345)
 np.random.shuffle(indexes)
 
-for i in range(2000000):
+for i in range(500000):
     train_context_writer.write(ctx_lines[indexes[i]])
     train_response_writer.write(rsp_lines[indexes[i]])
 
-for i in range(2000000, 2010000):
+for i in range(500000, 510000):
     valid_context_writer.write(ctx_lines[indexes[i]])
     valid_response_writer.write(rsp_lines[indexes[i]])
 
-for i in range(2010000, 2020000):
+for i in range(510000, 520000):
     test_context_writer.write(ctx_lines[indexes[i]])
     test_response_writer.write(rsp_lines[indexes[i]])
